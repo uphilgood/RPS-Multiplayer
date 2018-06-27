@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Employee Timesheet</title>
     <meta charset="utf-8">
@@ -19,164 +20,206 @@
     <link rel="icon" type="favicon" href="">
     <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
 </head>
+
 <body>
-        <div class="jumbotron">
-                <h1 class="display-4">Rock Paper Scissors!</h1>
-                <p class="lead">Choose Player 1 or 2 to Start Game</p>
-                <hr class="my-4">
-                <p>Once You Choose Player, Enter Your Name</p>
-                <form id="player1form">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Enter Player 1 Name</label>
-                          <input type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter name">
-                          
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary" id="player1" >Submit</button>
-                      </form>
-                      <form id="player2form">
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Enter Player 2 Name</label>
-                              <input type="text" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="Enter name">
-                              
-                            </div>
-                            <button type="submit" class="btn btn-outline-primaryy" id="player2">Submit</button>
-                          </form>
-                        
-              </div>
-<div class="container" id="buttons-view">
-        <p class="lead">Choose your weapon!</p>
+    <div class="jumbotron">
+        <h1 class="display-4">Rock Paper Scissors!</h1>
+        <p class="lead">Choose Player 1 or 2 to Start Game</p>
         <hr class="my-4">
-</div>
+        <p>Once You Choose Player, Enter Your Name</p>
+        <form id="player1form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Enter Player 1 Name</label>
+                <input type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter name">
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://connect.soundcloud.com/sdk/sdk-3.3.0.js"></script>
+            </div>
+            <button type="submit" class="btn btn-outline-primary" id="player1">Submit</button>
+        </form>
+        <form id="player2form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Enter Player 2 Name</label>
+                <input type="text" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="Enter name">
 
-<!-- Script -->
-<script>
-$(document).ready(function () {
-     var config = {
-    apiKey: "AIzaSyCDJUrZlD2VGIB7IFCmu06mdIyW9z1WIWM",
-    authDomain: "rpsgame-9de6a.firebaseapp.com",
-    databaseURL: "https://rpsgame-9de6a.firebaseio.com",
-    projectId: "rpsgame-9de6a",
-    storageBucket: "",
-    messagingSenderId: "124850522007"
-  };
-  firebase.initializeApp(config);
+            </div>
+            <button type="submit" class="btn btn-outline-primaryy" id="player2">Submit</button>
+        </form>
 
-
-   var database = firebase.database();
-
-var player1 = {}
-var player2 = {}
-var firstUserId = ''
-var firstUser = ''
-var secondUser = ''
-var choiceArray = ["Rock", "Paper", "Scissors"]
-
-
-$("#player1").on("click", function(event) {
-  event.preventDefault();
-
-  // Grabbed values from text boxes
-  player1 = {
-name: $("#exampleInput1").val().trim(),
-wins: 0,
-loss: 0,
-chat: [{
-    message: ''
-}],
-choice: '',
-dateAdded: firebase.database.ServerValue.TIMESTAMP
-  }
-
-  var firstUser = database.ref().push(player1);
-  firstUserId = firstUser.key
-  console.log(firstUserId)
-  $("#player1form").hide()
-
-
-choiceArray.forEach(choice => {
-
-var a = $("<button>")
-a.addClass("btn btn-primary").attr
-
-({
-    id: "p1" + choice,
-    data: choice
-}).text(choice)
-
-$('#buttons-view').append(a)
-console.log(choice)
-})
-});
-
-$(document).on("click", ".btn-primary", function() {
-    player1.choice = this.getAttribute("data")
-database.ref(firstUserId + "/choice").set(player1.choice);
-console.log(player1.choice)
-$("#player2form").show()
-$("#buttons-view").hide()
-});
-
-$("#player2").on("click", function(event) {
-  event.preventDefault();
-
-  player2 = {
-name: $("#exampleInput2").val().trim(),
-wins: 0,
-loss: 0,
-chat: [{
-    message: ''
-}],
-dateAdded: firebase.database.ServerValue.TIMESTAMP
-  }
-// $("#totalBilled1").val(totalBilled)
-  // Code for handling the push
-  var secondUser = database.ref().push(player2);
-  secondUserId = secondUser.key
-  console.log(secondUserId)
-
-//   database.ref("-LFyPDvZ6zPGrWGrArIN/name").set("philip2");
- 
-});
-
-// $("#delete").on("click", function(event) {
-//   event.preventDefault();
-// database.remove();
-    
-// });
-
- database.ref().on("child_added", snapshot => {
-      // storing the snapshot.val() in a variable for convenience
-      var u = snapshot.val();
-    //   if (u.key === firstUserId ) {
-    //       $("#player1form").hide()
-    //   }
-
-    console.log(u)
-    
-    //   $("#row-one").append("tr><td class='employeeName'>" + sv.name +
-    //     " </td><td class='role'> " + sv.role +
-    //       " </td><td class='startDate'> " + sv.startDate +
-    //         " </td><td class='monthsWorked'> " + sv.monthsWorked + " </td><td class='monthlyRate'>" + sv.monthlyRate + "</td><td class='totalBilled'> " + sv.totalBilled + "</td></tr>");
-
-      // Handle the errors
-    }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
-    });
-
-function intialize() {
-    $("#player2form").hide()
+    </div>
+    <div class="container" id="buttons-view">
    
+  
+    </div>
 
-}
-intialize()
-});
+    <div class="container" id="buttons-view2">
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.0.js"></script>
+
+    <!-- Script -->
+    <script>
+        $(document).ready(function () {
+            var config = {
+                apiKey: "AIzaSyCDJUrZlD2VGIB7IFCmu06mdIyW9z1WIWM",
+                authDomain: "rpsgame-9de6a.firebaseapp.com",
+                databaseURL: "https://rpsgame-9de6a.firebaseio.com",
+                projectId: "rpsgame-9de6a",
+                storageBucket: "",
+                messagingSenderId: "124850522007"
+            };
+            firebase.initializeApp(config);
 
 
+            var database = firebase.database();
 
+            var player1 = {}
+            var player2 = {}
+            var firstUserId = ''
+            var firstUser = ''
+            var secondUser = ''
+            var choiceArray = ["Rock", "Paper", "Scissors"]
+
+            function checkWinner() {
+                if (player1.choice === player2.choice ) {
+                    alert("tie")
+                    $("#buttons-view").show()
+
+                }
+            }
+
+            $("#player1").on("click", function (event) {
+                event.preventDefault();
+
+                // Grabbed values from text boxes
+                player1 = {
+                    name: $("#exampleInput1").val().trim(),
+                    wins: 0,
+                    loss: 0,
+                    chat: [{
+                        message: ''
+                    }],
+                    choice: '',
+                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                }
+
+                var firstUser = database.ref().push(player1);
+                firstUserId = firstUser.key
+                console.log(firstUserId)
+                $("#player1form").hide()
+
+
+                choiceArray.forEach(choice => {
+
+                    var a = $("<button>")
+                    a.addClass("btn btn-primary").attr
+
+                    ({
+                        id: "p1" + choice,
+                        data: choice
+                    }).text(choice)
+
+                    $('#buttons-view').append(a)
+                    console.log(choice)
+                })
+                localStorage.setItem('player1', JSON.stringify(player1));
+            });
+
+            var retrievedObject1 = localStorage.getItem('player1', JSON.stringify(player1));
+
+            $(document).on("click", ".btn-primary", function () {
+                player1.choice = this.getAttribute("data")
+                database.ref(firstUserId + "/choice").set(player1.choice);
+                console.log(player1.choice)
+                $("#player2form").show()
+                $("#buttons-view").hide()
+                if (player2) {
+                    $("#player2form").hide()
+                    $("#buttons-view2").show()
+                }
+            });
+
+            $(document).on("click", ".btn-secondary", function () {
+                player2.choice = this.getAttribute("data")
+                database.ref(secondUserId + "/choice").set(player2.choice);
+                console.log(player2.choice)
+                $("#player2form").hide()
+                $("#buttons-view2").hide()
+                checkWinner()
+            });
+
+            $("#player2").on("click", function (event) {
+                event.preventDefault();
+
+                player2 = {
+                    name: $("#exampleInput2").val().trim(),
+                    wins: 0,
+                    loss: 0,
+                    chat: [{
+                        message: ''
+                    }],
+                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                }
+                var secondUser = database.ref().push(player2);
+                secondUserId = secondUser.key
+                console.log(secondUserId)
+
+                choiceArray.forEach(choice => {
+
+                    var a = $("<button>")
+                    a.addClass("btn btn-secondary").attr
+
+                    ({
+                        id: "p2" + choice,
+                        data: choice
+                    }).text(choice)
+
+                    $('#buttons-view2').append(a)
+                    console.log(choice)
+                })
+                localStorage.setItem('player2', JSON.stringify(player2));
+            });
+
+            var retrievedObject2 = localStorage.getItem('player2', JSON.stringify(player2));
+
+            database.ref().on("child_added", snapshot => {
+                // storing the snapshot.val() in a variable for convenience
+                var u = snapshot.val();
+                //   if (u.key === firstUserId ) {
+                //       $("#player1form").hide()
+                //   }
+
+                console.log(u)
+
+                //   $("#row-one").append("tr><td class='employeeName'>" + sv.name +
+                //     " </td><td class='role'> " + sv.role +
+                //       " </td><td class='startDate'> " + sv.startDate +
+                //         " </td><td class='monthsWorked'> " + sv.monthsWorked + " </td><td class='monthlyRate'>" + sv.monthlyRate + "</td><td class='totalBilled'> " + sv.totalBilled + "</td></tr>");
+
+                // Handle the errors
+            }, function (errorObject) {
+                console.log("Errors handled: " + errorObject.code);
+            });
+
+            function intialize() {
+                $("#player2form").hide()
+
+
+            }
+            intialize()
+
+            if (retrievedObject1) {
+                console.log('localStorage')
+                $("#player1form").hide()
+                $("#player2form").show()
+            } if (retrievedObject2) {
+                console.log('localStorage')
+                $("#player1form").hide()
+                $("#player2form").hide()
+            }
+        });
     </script>
 
 </body>
+
 </html>
