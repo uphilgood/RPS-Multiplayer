@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter name">
 
             </div>
-            <button type="submit" class="btn btn-outline-primary" id="player1">Submit</button>
+            <button type="submit" class="btn btn-outline-primary" id="player1submit">Submit</button>
         </form>
         <form id="player2form">
             <div class="form-group">
@@ -41,13 +41,13 @@
                 <input type="text" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="Enter name">
 
             </div>
-            <button type="submit" class="btn btn-outline-primaryy" id="player2">Submit</button>
+            <button type="submit" class="btn btn-outline-primaryy" id="player2submit">Submit</button>
         </form>
 
     </div>
     <div class="container" id="buttons-view">
-   
-  
+
+
     </div>
 
     <div class="container" id="buttons-view2">
@@ -81,14 +81,33 @@
             var choiceArray = ["Rock", "Paper", "Scissors"]
 
             function checkWinner() {
-                if (player1.choice === player2.choice ) {
+                if (player1.choice === player2.choice) {
                     alert("tie")
                     $("#buttons-view").show()
-
+                } if (player1.choice === "Rock" && player2.choice === "Scissors") {
+                    alert(player1.name + " you win!")
+                    
+                } if (player1.choice === "Rock" && player2.choice === "Paper") {
+                    alert(player2.name + " you win!")
+                    
+                } if (player1.choice === "Paper" && player2.choice === "Scissors") {
+                    alert(player2.name + " you win!")
+                   
+                } if (player1.choice === "Paper" && player2.choice === "Rock") {
+                    alert(player1.name + " you win!")
+                    
+                } if (player1.choice === "Scissors" && player2.choice === "Rock") {
+                    alert(player2.name + " you win!")
+                    
+                } if (player1.choice === "Scissors" && player2.choice === "Paper") {
+                    alert(player1.name + " you win!")
+                    
                 }
+                console.log(player1)
+                console.log(player2)
             }
 
-            $("#player1").on("click", function (event) {
+            $("#player1submit").on("click", function (event) {
                 event.preventDefault();
 
                 // Grabbed values from text boxes
@@ -134,7 +153,7 @@
                 $("#player2form").show()
                 $("#buttons-view").hide()
                 if (player2) {
-                    $("#player2form").hide()
+                    // $("#player2form").hide()
                     $("#buttons-view2").show()
                 }
             });
@@ -148,7 +167,7 @@
                 checkWinner()
             });
 
-            $("#player2").on("click", function (event) {
+            $("#player2submit").on("click", function (event) {
                 event.preventDefault();
 
                 player2 = {
@@ -212,7 +231,8 @@
                 console.log('localStorage')
                 $("#player1form").hide()
                 $("#player2form").show()
-            } if (retrievedObject2) {
+            }
+            if (retrievedObject2) {
                 console.log('localStorage')
                 $("#player1form").hide()
                 $("#player2form").hide()
