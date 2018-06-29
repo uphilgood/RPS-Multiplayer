@@ -185,10 +185,10 @@
                     $('#buttons-view').append(a)
                     console.log(choice)
                 })
-                sessionStorage.setItem('player1', JSON.stringify(player1));
+                localStorage.setItem('player1', JSON.stringify(player1));
             });
             
-            var retrievedObject1 = sessionStorage.getItem('player1', JSON.stringify(player1));
+            var retrievedObject1 = localStorage.getItem('player1', JSON.stringify(player1));
             // $("#user1choice").html("<strong>" + player1.name + ", choose your weapon!</strong>" )
             // $("#user1choice").show()
 
@@ -242,15 +242,18 @@
                     console.log(choice)
                 })
                 $("#player2form").hide()
-                sessionStorage.setItem('player2', JSON.stringify(player2));
+                localStorage.setItem('player2', JSON.stringify(player2));
             });
 
-            var retrievedObject2 = sessionStorage.getItem('player2', JSON.stringify(player2));
+            var retrievedObject2 = localStorage.getItem('player2', JSON.stringify(player2));
 
 
-            database.ref().on("child_added", snapshot => {
+            database.ref().on("value", snapshot => {
                 // storing the snapshot.val() in a variable for convenience
                 var u = snapshot.val();
+                if (u[firstUserId]) {
+                    $("#player1form").hide()
+                }
                 // $('#p1score').append(u.name + ": " + u.wins)
                 //   if (u.key === firstUserId ) {
                 //       $("#player1form").hide()
